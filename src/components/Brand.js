@@ -26,6 +26,7 @@ function Brand({ brand }) {
       setSelectedBrands(selectedBrands.filter((slug) => slug !== brand.slug));
     } else {
       setSelectedBrands([...selectedBrands, brand.slug]);
+      console.log(selectedBrands);
     }
   };
 
@@ -46,7 +47,6 @@ function Brand({ brand }) {
         <div className="brand-colors">
           {brand.colors.map((color, index) => (
             <Clipboard
-            
               key={index}
               data-clipboard-text={`#${color}`}
               onClick={(e) => {
