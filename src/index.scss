@@ -1,0 +1,448 @@
+$smallFontSize: 13px;
+$normalFontSize: 18px;
+$bigFontSize: 24px;
+@mixin Group {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  .toolbar-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    button,
+    span,
+    a {
+      color: #607d8b;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    button {
+      font-size: $smallFontSize + 1px;
+      margin-right: 8px;
+      margin-top: 3px;
+      background-color: transparent;
+    }
+    a {
+      margin-right: 8px;
+      font-size: $smallFontSize + 1px;
+    }
+    span {
+      font-size: $smallFontSize;
+      padding: 3px 10px 3px 0;
+      border-right: 1.5px solid #e0e0e0;
+    }
+    select {
+      background-color: #e0e0e0;
+      appearance: none;
+      color: #3e5058;
+      width: 50px;
+      text-align: center;
+      padding: 3px 5px;
+      font-size: $smallFontSize;
+      border-radius: 5px;
+      margin-top: 3px;
+      margin-right: 8px;
+      &:disabled {
+        opacity: 0.5;
+        color: #4d636e;
+      }
+    }
+    &.active {
+      button,
+      a,
+      span {
+        pointer-events: all;
+        opacity: 1;
+      }
+      button,
+      a {
+        cursor: pointer;
+        :hover {
+          color: #3e5058;
+        }
+      }
+    }
+  }
+  .all-download {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    a {
+      color: #607d8b;
+      padding: 0 10px;
+      font-size: $smallFontSize;
+
+      i {
+        font-size: $smallFontSize + 1px;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border: 0;
+  text-decoration: none;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+}
+
+// Sidebar
+
+.sidebar {
+  width: 320px;
+  min-width: 320px;
+  height: 100vh;
+  padding: 25px;
+  .logo {
+    margin-bottom: 5px;
+
+    background-image: url(https://brandcolors.net/assets/img/logo.png);
+    background-position: left center;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    a {
+      height: 100%;
+      font-size: $normalFontSize;
+    }
+  }
+  .description {
+    font-size: $smallFontSize;
+    color: #607d8b;
+    padding: 0 10px;
+    margin: 15px 0;
+  }
+  nav ul li {
+    a {
+      color: inherit;
+      padding-left: 10px;
+      font-size: $smallFontSize;
+      :hover {
+        color: #2196f3;
+      }
+    }
+  }
+}
+
+// Modal
+
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #modal {
+    position: relative !important;
+    inset: 0 !important;
+    border: 0 !important;
+    width: 90%;
+    max-width: 720px;
+    box-shadow: 0 10px 60px rgb(0 0 0 / 10%);
+    margin: auto;
+    padding: 25px;
+    .modal-header {
+      font-size: $normalFontSize;
+      margin-bottom: 20px;
+    }
+    .modal-description {
+      font-size: $smallFontSize;
+    }
+    button {
+      cursor: pointer;
+      display: flex;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 20px;
+    }
+  }
+}
+
+// Search Bar
+.content {
+  flex: 1;
+  overflow: auto;
+  border-left: 1px solid #e0e0e0;
+  position: relative;
+  .search-bar,
+  .collection-bar {
+    flex: 1;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .search-bar {
+    z-index: 1;
+    .search {
+      height: 100%;
+      position: relative;
+      .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 35px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          width: 15px;
+          height: 15px;
+        }
+      }
+      input {
+        width: 100%;
+        height: 100%;
+
+        padding: 0 30px;
+        font-size: $smallFontSize;
+        height: 100%;
+      }
+    }
+    .group {
+      @include Group;
+    }
+  }
+
+  .brands {
+    width: 100%;
+    .brand {
+      cursor: pointer;
+      margin-left: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      &.selected {
+        .brand-main {
+          .brand-name {
+            position: relative;
+            span {
+              font-weight: 600;
+              margin-left: 24px;
+            }
+            svg {
+              visibility: visible;
+              position: absolute;
+              top: -9px;
+              left: -10px;
+              font-size: 35px;
+            }
+          }
+          .brand-colors {
+            .brand-color {
+              flex: 0 1 40px;
+              flex-grow: 1;
+              flex-basis: 120px;
+              color: var(--bg-color);
+              :hover {
+                color: var(--text-color);
+              }
+
+              svg {
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+        .brand-footer {
+          display: block;
+        }
+      }
+      .brand-main {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+
+        .brand-name {
+          width: 20%;
+          font-weight: 400;
+          svg {
+            visibility: hidden;
+          }
+        }
+        .brand-colors {
+          width: 80%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          .brand-color {
+            box-shadow: inset 0 0 0 1px rgb(0 0 0 / 10%);
+            width: 50px;
+            height: 32px;
+            margin: 8px;
+            background-color: var(--bg-color);
+            color: var(--bg-color);
+            font-size: $smallFontSize - 1px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: $normalFontSize;
+            }
+          }
+          .brand-color:hover {
+            color: var(--text-color);
+          }
+        }
+      }
+      .brand-footer {
+        display: none;
+        margin: 5px 0 15px 0;
+        ul {
+          display: flex;
+          flex-direction: row;
+          li {
+            margin-right: 10px;
+
+            font-size: $smallFontSize - 1.5px;
+            color: #607d8b;
+            &.footer-link {
+              a {
+                color: inherit;
+                margin-left: -3px;
+              }
+              list-style-type: disc;
+              list-style-position: inside;
+              :hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .clipboard-action {
+    width: 200px;
+    padding: 10px;
+    font-size: $smallFontSize;
+    opacity: 0;
+    color: white;
+    background-color: #36464e;
+    position: fixed;
+    border-radius: 3px;
+    text-align: center;
+    bottom: 15px;
+    right: 23px;
+    transition: all 0.5s;
+    &.show {
+      transition: all 0.5s;
+      opacity: 0.85;
+    }
+  }
+  .collection-bar {
+    z-index: 1;
+    .prev {
+      margin-left: 10px;
+      color: #607d8b;
+      font-size: $smallFontSize + 2px;
+      cursor: pointer;
+    }
+    .group {
+      @include Group;
+    }
+  }
+  section.brand {
+    width: 100%;
+    padding: 25px 25px;
+    .brand-name {
+      font-size: $bigFontSize;
+      margin-bottom: 8px;
+    }
+    .brand-colors {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .brand-color {
+        height: 35px;
+        background-color: var(--bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: transparent;
+        margin-bottom: 8px;
+        width: 100%;
+
+        svg {
+          font-size: $normalFontSize;
+          margin-right: 8px;
+        }
+        span {
+          font-weight: 500;
+          font-size: $smallFontSize - 2px;
+          &::before {
+            content: "#";
+            opacity: 0.66;
+          }
+        }
+        &:hover {
+          color: var(--text-color);
+        }
+      }
+    }
+    .brand-footer {
+      margin: 5px 0 15px 0;
+      ul {
+        display: flex;
+        flex-direction: row;
+        li {
+          margin-right: 10px;
+
+          font-size: $smallFontSize - 1.5px;
+          color: #607d8b;
+          &.footer-link {
+            a {
+              color: inherit;
+              margin-left: -3px;
+            }
+            list-style-type: disc;
+            list-style-position: inside;
+            :hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
