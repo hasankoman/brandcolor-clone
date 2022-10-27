@@ -17,9 +17,13 @@ function Collection() {
     }, 2000);
   };
 
-  const slug = window.location.pathname.replace("/brand:", "");
+  const slug = window.location.pathname.replace("/brandcolor-clone/brand:", "");
+
+  console.log(slug);
 
   const brand = brands.find((brand) => brand.slug === slug);
+
+  console.log(brand);
 
   return (
     <main className="content">

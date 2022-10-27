@@ -84,7 +84,7 @@ function Brand({ brand }) {
             </a>
           </li>
           <li className="footer-link">
-            <a onClick={() => navigate(`/brand:${brand.slug}`)}>Perma Link</a>
+            <a onClick={() => navigate(`brand:${brand.slug}`)}>Perma Link</a>
           </li>
         </ul>
       </footer>

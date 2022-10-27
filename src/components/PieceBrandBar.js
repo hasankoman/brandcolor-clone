@@ -5,7 +5,7 @@ function PeaceBrandBar() {
 
   return (
     <div className="collection-bar">
-      <div className="prev" onClick={() => navigate("/")}>
+      <div className="prev" onClick={() => navigate("/brandcolor-clone")}>
         <i className="fa-solid fa-arrow-left"></i> All Brands
       </div>
     </div>

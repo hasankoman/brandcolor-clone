@@ -40,9 +40,12 @@ function App() {
         <Sidebar />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Content />} />
-            <Route path="/collection:slugs" element={<Collection />} />
-            <Route path="/brand:slug" element={<Piece />} />
+            <Route path="/brandcolor-clone" element={<Content />} />
+            <Route
+              path="/brandcolor-clone/collection:slugs"
+              element={<Collection />}
+            />
+            <Route path="/brandcolor-clone/brand:slug" element={<Piece />} />
           </Routes>
         </BrowserRouter>
       </MainContext.Provider>
