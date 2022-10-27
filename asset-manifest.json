@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/brandcolor-clone/static/css/main.75d1f36e.css",
+    "main.js": "/brandcolor-clone/static/js/main.c260644c.js",
+    "index.html": "/brandcolor-clone/index.html",
+    "main.75d1f36e.css.map": "/brandcolor-clone/static/css/main.75d1f36e.css.map",
+    "main.c260644c.js.map": "/brandcolor-clone/static/js/main.c260644c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75d1f36e.css",
+    "static/js/main.c260644c.js"
+  ]
+}
